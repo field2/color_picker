@@ -1,0 +1,125 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box; }
+
+html,
+body {
+	width: 100%;
+	height: 100vh; }
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center; }
+
+color_wheel {
+	position: relative;
+	width: 8rem;
+	height: 8rem;
+	padding: 0;
+	border-radius: 50%;
+	list-style: none;
+	margin: 1em; }
+	color_wheel > * {
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 2rem;
+		height: 2rem;
+		margin: -1rem; }
+		color_wheel > *:nth-of-type(1) {
+			transform: rotate(0deg) translate(4rem) rotate(0deg); }
+		color_wheel > *:nth-of-type(2) {
+			transform: rotate(30deg) translate(4rem) rotate(-30deg); }
+		color_wheel > *:nth-of-type(3) {
+			transform: rotate(60deg) translate(4rem) rotate(-60deg); }
+		color_wheel > *:nth-of-type(4) {
+			transform: rotate(90deg) translate(4rem) rotate(-90deg); }
+		color_wheel > *:nth-of-type(5) {
+			transform: rotate(120deg) translate(4rem) rotate(-120deg); }
+		color_wheel > *:nth-of-type(6) {
+			transform: rotate(150deg) translate(4rem) rotate(-150deg); }
+		color_wheel > *:nth-of-type(7) {
+			transform: rotate(180deg) translate(4rem) rotate(-180deg); }
+		color_wheel > *:nth-of-type(8) {
+			transform: rotate(210deg) translate(4rem) rotate(-210deg); }
+		color_wheel > *:nth-of-type(9) {
+			transform: rotate(240deg) translate(4rem) rotate(-240deg); }
+		color_wheel > *:nth-of-type(10) {
+			transform: rotate(270deg) translate(4rem) rotate(-270deg); }
+		color_wheel > *:nth-of-type(11) {
+			transform: rotate(300deg) translate(4rem) rotate(-300deg); }
+		color_wheel > *:nth-of-type(12) {
+			transform: rotate(330deg) translate(4rem) rotate(-330deg); }
+
+color_wheel swatch {
+	cursor: pointer;
+	border-radius: 100%;
+	display: block; }
+
+.red {
+	background: #ff0000; }
+
+.red-orange {
+	background: #ff5300; }
+
+.orange {
+	background: #ffa500; }
+
+.orange-yellow {
+	background: #ffd200; }
+
+.yellow {
+	background: #ffff00; }
+
+.yellow-green {
+	background: #80ff00; }
+
+.green {
+	background: #0f0; }
+
+.green-blue {
+	background: #008080; }
+
+.blue {
+	background: #00f; }
+
+.blue-purple {
+	background: #4000c0; }
+
+.purple {
+	background: #800080; }
+
+.purple-red {
+	background: #c00040; }
+
+palette {
+	display: grid;
+	grid-gap: 5px;
+	grid-template-rows: repeat(13, auto);
+	grid-auto-flow: column;
+	margin: 2em; }
+
+palette swatch {
+	background: #555;
+	width: 2em;
+	height: 2em;
+	display: block; }
+
+label {
+	font-weight: bold;
+	margin-top: 1em;
+	display: block; }
+
+.sample_swatch {
+	width: 50px;
+	height: 50px;
+	display: inline-block;
+	background: red; }
+
+.dim {
+	opacity: .3; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,135 @@
+@mixin on-circle($item-count, $circle-size, $item-size) {
+  position: relative;
+  width: $circle-size;
+  height: $circle-size;
+  padding: 0;  
+  border-radius: 50%;
+  list-style: none;
+
+  > * {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $item-size;
+    height: $item-size;
+    margin: -($item-size / 2);
+
+    $angle: (360 / $item-count);
+    $rot: 0;
+
+    @for $i from 1 through $item-count {
+      &:nth-of-type(#{$i}) {
+        transform: rotate($rot * 1deg) translate($circle-size / 2)
+          rotate($rot * -1deg);
+      }
+
+      $rot: $rot + $angle;
+    }
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+color_wheel {
+  @include on-circle($item-count: 12, $circle-size: 8rem, $item-size: 2rem);
+  margin: 1em;
+}
+color_wheel swatch {
+  cursor: pointer;
+  border-radius: 100%;
+  display: block;
+}
+
+.red {
+  background: #ff0000;
+}
+
+.red-orange {
+  background: #ff5300;
+}
+
+.orange {
+  background: #ffa500;
+}
+
+.orange-yellow {
+  background: #ffd200;
+}
+.yellow {
+  background: #ffff00;
+} 
+
+.yellow-green {
+  background: #80ff00;
+}
+
+.green {
+  background: #0f0;
+}
+
+.green-blue {
+  background: #008080;
+}
+.blue {
+  background: #00f;
+}
+
+.blue-purple {
+  background: #4000c0;
+}
+
+.purple {
+  background: #800080;
+}
+
+.purple-red {
+  background: #c00040;
+}
+
+palette {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-rows: repeat(13, auto);
+  grid-auto-flow: column;
+  margin: 2em;
+}
+
+palette swatch {
+  background: #555;
+  width: 2em;
+  height: 2em;
+  display: block;
+}
+
+label {
+  font-weight: bold;
+  margin-top: 1em;
+  display: block;
+}
+
+
+.sample_swatch {
+  width:50px;
+  height:50px;
+  display:inline-block;
+  background:red;
+}
+
+.dim {
+	opacity:.3;
+}
