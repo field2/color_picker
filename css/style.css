@@ -13,7 +13,7 @@ body {
 	flex-direction: column;
 	align-items: center; }
 
-color_wheel {
+color_index {
 	position: relative;
 	width: 8rem;
 	height: 8rem;
@@ -21,7 +21,7 @@ color_wheel {
 	border-radius: 50%;
 	list-style: none;
 	margin: 1em; }
-	color_wheel > * {
+	color_index > * {
 		display: block;
 		position: absolute;
 		top: 50%;
@@ -29,32 +29,32 @@ color_wheel {
 		width: 2rem;
 		height: 2rem;
 		margin: -1rem; }
-		color_wheel > *:nth-of-type(1) {
+		color_index > *:nth-of-type(1) {
 			transform: rotate(0deg) translate(4rem) rotate(0deg); }
-		color_wheel > *:nth-of-type(2) {
+		color_index > *:nth-of-type(2) {
 			transform: rotate(30deg) translate(4rem) rotate(-30deg); }
-		color_wheel > *:nth-of-type(3) {
+		color_index > *:nth-of-type(3) {
 			transform: rotate(60deg) translate(4rem) rotate(-60deg); }
-		color_wheel > *:nth-of-type(4) {
+		color_index > *:nth-of-type(4) {
 			transform: rotate(90deg) translate(4rem) rotate(-90deg); }
-		color_wheel > *:nth-of-type(5) {
+		color_index > *:nth-of-type(5) {
 			transform: rotate(120deg) translate(4rem) rotate(-120deg); }
-		color_wheel > *:nth-of-type(6) {
+		color_index > *:nth-of-type(6) {
 			transform: rotate(150deg) translate(4rem) rotate(-150deg); }
-		color_wheel > *:nth-of-type(7) {
+		color_index > *:nth-of-type(7) {
 			transform: rotate(180deg) translate(4rem) rotate(-180deg); }
-		color_wheel > *:nth-of-type(8) {
+		color_index > *:nth-of-type(8) {
 			transform: rotate(210deg) translate(4rem) rotate(-210deg); }
-		color_wheel > *:nth-of-type(9) {
+		color_index > *:nth-of-type(9) {
 			transform: rotate(240deg) translate(4rem) rotate(-240deg); }
-		color_wheel > *:nth-of-type(10) {
+		color_index > *:nth-of-type(10) {
 			transform: rotate(270deg) translate(4rem) rotate(-270deg); }
-		color_wheel > *:nth-of-type(11) {
+		color_index > *:nth-of-type(11) {
 			transform: rotate(300deg) translate(4rem) rotate(-300deg); }
-		color_wheel > *:nth-of-type(12) {
+		color_index > *:nth-of-type(12) {
 			transform: rotate(330deg) translate(4rem) rotate(-330deg); }
 
-color_wheel swatch {
+color_index swatch {
 	cursor: pointer;
 	border-radius: 100%;
 	display: block; }
