@@ -27,6 +27,7 @@
       $rot: $rot + $angle;
     }
   }
+  transform: rotate(-90deg)
 }
 
 * {
@@ -42,14 +43,15 @@ body {
 
 body {
   display: flex;
+  font-family:sans-serif;
   flex-direction: column;
   align-items: center;
 }
-color_index {
+color_wheel {
   @include on-circle($item-count: 12, $circle-size: 8rem, $item-size: 2rem);
   margin: 1em;
 }
-color_index swatch {
+color_wheel swatch {
   cursor: pointer;
   border-radius: 100%;
   display: block;
