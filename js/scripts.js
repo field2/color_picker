@@ -6,33 +6,40 @@ $(document).ready(function() {
 
         base_color = $(this).data("color_index");
         if (color_scheme) {
-            console.log(color_scheme);
+
             update_color_index(base_color);
 
         } else {
             color_index.length = 0;
-            color_index.push(base_color);
+            color_index.unshift(base_color);
 
         }
         update_color_wheel(base_color);
-        console.log(color_index);
     });
 
     $("color_schemes input").click(function() {
         color_scheme = $(this).data("color_scheme");
+        console.log(color_index.length);
+        console.log(color_scheme);
         if (color_index.length == 0) {
             console.log("Click a color");
         } else {
+
+        base_color = color_index[0];
+        console.log("base color is " + base_color);
             // console.log("Color index is " + color_index);
 
-        color_index.length = 1;
+   
+        console.log(color_index);
             update_color_index(color_index[0]);
+                    // update_color_wheel();
+
         }
-        update_color_wheel();
     });
 
     function update_color_index(base_color) {
         console.log(color_scheme);
+        color_index.length=1;
         switch (color_scheme) {
             case "triadic":
                 if (base_color < 5) {
@@ -70,14 +77,18 @@ $(document).ready(function() {
                 break;
         }
         console.log(color_index);
+update_color_wheel(color_index[0]);
     }
 
-    function update_color_wheel() {
-
-        console.log("Base color is " + base_color);
+    function update_color_wheel(base_color) {
+// remove first color and add color_index[0]
+color_index.shift();
+color_index.unshift(base_color);
+        console.log("Updating color wheel with base color: " + base_color);
         color_index_length = color_index.length;
         console.log("Index contains " + color_index_length + " color(s)");
         $("color_wheel swatch").addClass("dim");
+
         for (var i = 0; i < color_index_length; i++) {
             $("color_wheel swatch:nth-of-type(" + color_index[i] + ")").removeClass("dim");
         }
