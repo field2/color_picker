@@ -49,7 +49,7 @@ body {
 }
 color_wheel {
   @include on-circle($item-count: 12, $circle-size: 8rem, $item-size: 2rem);
-  margin: 1em;
+  margin: 5em;
 }
 color_wheel swatch {
   cursor: pointer;
@@ -102,7 +102,9 @@ color_wheel swatch {
 .purple-red {
   background: #c00040;
 }
-
+palettes {
+	display:flex;
+}
 palette {
   display: grid;
   grid-gap: 5px;
@@ -113,10 +115,9 @@ palette {
 
 palette swatch {
   background: #555;
-  width: 2em;
-  height: 2em;
+  width: 1em;
+  height: 1em;
   display: block;
-  border-radius: 50%;
 }
 
 label {
