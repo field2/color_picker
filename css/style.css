@@ -108,7 +108,8 @@ palette swatch {
 	background: #555;
 	width: 2em;
 	height: 2em;
-	display: block; }
+	display: block;
+	border-radius: 50%; }
 
 label {
 	font-weight: bold;

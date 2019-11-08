@@ -2,53 +2,51 @@ $(document).ready(function() {
     // global variables
     var color_index = new Array();
     var color_scheme;
+    var number_steps;
+
     $("color_wheel swatch").click(function() {
-
         base_color = $(this).data("color_index");
+          base_rgb = $(this).css("background-color");
+
         if (color_scheme) {
-
             update_color_index(base_color);
-
         } else {
             color_index.length = 0;
             color_index.unshift(base_color);
-
         }
         update_color_wheel(base_color);
+        base_hsl = RGBToHSL(base_rgb);
+
+
     });
 
     $("color_schemes input").click(function() {
         color_scheme = $(this).data("color_scheme");
-        console.log(color_index.length);
-        console.log(color_scheme);
         if (color_index.length == 0) {
-            console.log("Click a color");
+            alert("Click a color");
         } else {
 
-        base_color = color_index[0];
-        console.log("base color is " + base_color);
-            // console.log("Color index is " + color_index);
-
-   
-        console.log(color_index);
+$("palette").html("");
+            base_color = color_index[0];
             update_color_index(color_index[0]);
-                    // update_color_wheel();
 
         }
     });
 
     function update_color_index(base_color) {
-        console.log(color_scheme);
-        color_index.length=1;
+        color_index.length = 1;
+
         switch (color_scheme) {
             case "triadic":
                 if (base_color < 5) {
                     color_index.push(base_color + 4, base_color + 8);
+
                 } else if (base_color < 9) {
                     color_index.push(base_color + 4, base_color - 4);
                 } else {
                     color_index.push(base_color - 4, base_color - 8);
                 }
+
                 break;
             case "complementary":
                 if (base_color >= 7) {
@@ -75,18 +73,20 @@ $(document).ready(function() {
                     color_index.push(base_color - 1, base_color + 1);
                 }
                 break;
+            default:
+                  base_rgb=$("color_wheel swatch:nth-of-type(" + color_index[1] + ")").css("background-color");
+                  base_hsb=RGBToHSL(base_rgb);
+
         }
-        console.log(color_index);
-update_color_wheel(color_index[0]);
+        $("palette").html("");
+        // generate_steps(base_hsb,number_steps);
+        update_color_wheel(color_index[0]);
     }
 
     function update_color_wheel(base_color) {
-// remove first color and add color_index[0]
-color_index.shift();
-color_index.unshift(base_color);
-        console.log("Updating color wheel with base color: " + base_color);
+        color_index.shift();
+        color_index.unshift(base_color);
         color_index_length = color_index.length;
-        console.log("Index contains " + color_index_length + " color(s)");
         $("color_wheel swatch").addClass("dim");
 
         for (var i = 0; i < color_index_length; i++) {
@@ -96,15 +96,39 @@ color_index.unshift(base_color);
     }
 
 
+    function generate_steps(color_hsl, swatch_num) {
+var h = color_hsl.split('(').pop().split(',')[0]; 
+console.log(h);
+var l = color_hsl.substring(color_hsl.lastIndexOf(",") + 1, color_hsl.lastIndexOf("%"));
+var l_rounded = Math.round(parseFloat(l));
+var lightness_levels = new Array();
+var tint_step = Math.round(l_rounded / 6);
+var tone_step = Math.round((100 - l_rounded) / 6);
+var step = 0;
+for (var i = 0; i < swatch_num; i++) {
+var $newSwatch = "<swatch></swatch>";
+$("palette").append($newSwatch);
+}
+for (var i = 0; i < 7; i++) {
+step += tint_step;
+tint_level = 'hsl(' + h + ',100%,' + step + '%)';
+lightness_levels.push(tint_level);
+}
+tone_level = color_hsl;
+lightness_levels.push(tone_level);
+for (var i = 0; i < 7; i++) {
+step += tone_step;
+tone_level = 'hsl(' + h + ',100%,' + step + '%)';
+lightness_levels.push(tone_level);
+}
+console.log(lightness_levels);
+console.log(lightness_levels.length);
+for (var i = 0; i < lightness_levels.length; i++) {
+$("palette swatch:nth-of-type(" + i + ")").css("background-color", lightness_levels[i]);
+}
+}
 
-    function rgb2hex(rgb) {
-        rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
 
-        function hex(x) {
-            return ("0" + parseInt(x).toString(16)).slice(-2);
-        }
-        return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
-    }
 
     function RGBToHSL(rgb) {
         let sep = rgb.indexOf(",") > -1 ? "," : " ";
@@ -142,14 +166,4 @@ color_index.unshift(base_color);
         return "hsl(" + h + "," + s + "%," + l + "%)";
     }
 
-    function HSLToRGB(h, s, l) {
-        s /= 100;
-        l /= 100;
-        let c = (1 - Math.abs(2 * l - 1)) * s,
-            x = c * (1 - Math.abs((h / 60) % 2 - 1)),
-            m = l - c / 2,
-            r = 0,
-            g = 0,
-            b = 0;
-    }
 });
