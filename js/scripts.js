@@ -1,30 +1,32 @@
 $(document).ready(function() {
-	// global variables
 	var color_index = new Array();
 	var color_scheme;
 	var number_steps;
 
 	$("color_wheel swatch").click(function() {
 		base_color = $(this).data("color_index");
-		if (color_scheme) {
+		if (color_scheme && color_index.length > 0) {
+
+
 			update_color_index(base_color);
-			console.log(color_scheme);
+		} else if (color_scheme) {
+
+			color_index.push(base_color);
+			update_color_index(base_color);
+
 		} else {
+
 			color_index.length = 0;
 			color_index.unshift(base_color);
-			base_color_rgb = $(this).css("background-color");
-			base_color_hsl = RGBToHSL(base_color_rgb);
-			generate_steps(base_color_hsl, "base_color");
 		}
 		update_color_wheel(base_color);
-
 
 	});
 
 	$("color_schemes input").click(function() {
 		color_scheme = $(this).data("color_scheme");
 		if (color_index.length == 0) {
-			alert("Click a color");
+
 		} else {
 
 			$("palette").html("");
@@ -36,9 +38,6 @@ $(document).ready(function() {
 
 	function update_color_index(base_color) {
 		color_index.length = 1;
-		base_rgb = $("color_wheel swatch:nth-of-type(" + color_index[0] + ")").css("background-color");
-		base_hsl = RGBToHSL(base_rgb);
-		generate_steps(base_hsl, "base_color");
 		switch (color_scheme) {
 			case "triadic":
 				if (base_color < 5) {
@@ -96,21 +95,24 @@ $(document).ready(function() {
 				alt_hsl2 = RGBToHSL(alt_rgb2);
 				generate_steps(alt_hsl2, "alt_2");
 				break;
-			default:
-				base_rgb = $("color_wheel swatch:nth-of-type(" + color_index[0] + ")").css("background-color");
-				base_hsl = RGBToHSL(base_rgb);
 
 		}
-		// $("palette").html("");
-		generate_steps(base_hsl, "base_color");
+
 		update_color_wheel(color_index[0]);
 	}
 
 	function update_color_wheel(base_color) {
-		color_index.shift();
-		color_index.unshift(base_color);
+		if (color_scheme !== "undefined") {
+			color_index.shift();
+			color_index.unshift(base_color);
+		} else {
+			color_index.push(base_color);
+		}
 		color_index_length = color_index.length;
 		$("color_wheel swatch").addClass("dim");
+		base_rgb = $("color_wheel swatch:nth-of-type(" + color_index[0] + ")").css("background-color");
+		base_hsl = RGBToHSL(base_rgb);
+		generate_steps(base_hsl, "base_color");
 
 		for (var i = 0; i < color_index_length; i++) {
 			$("color_wheel swatch:nth-of-type(" + color_index[i] + ")").removeClass("dim");
@@ -120,11 +122,14 @@ $(document).ready(function() {
 
 
 	function generate_steps(hsl, palette_id) {
+
+		// 
 		$("palette#" + palette_id).html("");
 		var h = hsl.split('(').pop().split(',')[0];
 		var l = hsl.substring(hsl.lastIndexOf(",") + 1, hsl.lastIndexOf("%"));
 		var l_rounded = Math.round(parseFloat(l));
 		var lightness_levels = new Array();
+
 		var tint_step = Math.round(l_rounded / 6);
 		var tone_step = Math.round((100 - l_rounded) / 6);
 		var step = 0;
@@ -132,20 +137,21 @@ $(document).ready(function() {
 			var $newSwatch = "<swatch></swatch>";
 			$("palette#" + palette_id + "").append($newSwatch);
 		}
-		for (var i = 0; i < 7; i++) {
+		for (var i = 0; i < 6; i++) {
 			step += tint_step;
 			tint_level = 'hsl(' + h + ',100%,' + step + '%)';
 			lightness_levels.push(tint_level);
 		}
 		tone_level = hsl;
 		lightness_levels.push(tone_level);
-		for (var i = 0; i < 7; i++) {
+		for (var i = 0; i < 6; i++) {
 			step += tone_step;
 			tone_level = 'hsl(' + h + ',100%,' + step + '%)';
 			lightness_levels.push(tone_level);
 		}
 		for (var i = 0; i < lightness_levels.length; i++) {
-			$("palette#" + palette_id + " swatch:nth-of-type(" + i + ")").css("background-color", lightness_levels[i]);
+			var ntarget = i + 1;
+			$("palette#" + palette_id + " swatch:nth-of-type(" + ntarget + ")").css("background-color", lightness_levels[i]);
 		}
 	}
 

@@ -7,6 +7,7 @@
 
 </head> 
 <body>
+	<h2>1. Choose a color</h2>
 	<color_wheel>
   <swatch class="red" data-color_index = "1"></swatch>
   <swatch class="red-orange" data-color_index="2"></swatch>
@@ -21,12 +22,13 @@
   <swatch class="purple" data-color_index="11"></swatch>
   <swatch class="purple-red" data-color_index="12"></swatch>
 </color_wheel>
+<h2>2. Choose a color scheme</h2>
 <color_schemes>
 
-  <input type="radio" name="color_scheme" value="triadic" data-color_scheme="triadic">Triadic<br>
-  <input type="radio" name="color_scheme" value="complementary" data-color_scheme="complementary">Complementary<br>
-  <input type="radio" name="color_scheme" value="split-complementary" data-color_scheme = "split-complementary">Split-complementary<br>
-  <input type="radio" name="color_scheme" value="analogous" data-color_scheme = "analogous">Analogous<br>
+  <input type="radio" name="color_scheme" id="triadic" data-color_scheme="triadic"><label for="triadic">Triadic</label><br>
+  <input type="radio" name="color_scheme" id="complementary" data-color_scheme="complementary"><label for="complementary">Complementary</label><br>
+  <input type="radio" name="color_scheme" id="split-complementary" data-color_scheme = "split-complementary"><label for="split-complementary">Split-complementary</label><br>
+  <input type="radio" name="color_scheme" id="analogous" data-color_scheme = "analogous"><label for="analogous">Analogous</label><br>
 </color_schemes>
 <palettes>
 <palette id="base_color"></palette>

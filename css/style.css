@@ -22,7 +22,7 @@ color_wheel {
 	border-radius: 50%;
 	list-style: none;
 	transform: rotate(-90deg);
-	margin: 5em; }
+	margin: 2rem; }
 	color_wheel > * {
 		display: block;
 		position: absolute;
@@ -97,15 +97,20 @@ color_wheel swatch {
 .purple-red {
 	background: #c00040; }
 
+h2 {
+	align: left; }
+
+color_schemes {
+	margin: 1rem; }
+
 palettes {
-	display: flex; }
+	display: flex;
+	flex-direction: column; }
 
 palette {
 	display: grid;
-	grid-gap: 5px;
-	grid-template-rows: repeat(13, auto);
-	grid-auto-flow: column;
-	margin: 2em; }
+	grid-template-columns: repeat(13, auto);
+	grid-auto-flow: row; }
 
 palette swatch {
 	background: #555;
@@ -115,8 +120,7 @@ palette swatch {
 
 label {
 	font-weight: bold;
-	margin-top: 1em;
-	display: block; }
+	margin-left: .5em; }
 
 .sample_swatch {
 	width: 50px;
