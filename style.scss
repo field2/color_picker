@@ -1,3 +1,5 @@
+
+// thanks for this mixin whoever wrote it, I'll try to add credit later
 @mixin on-circle($item-count, $circle-size, $item-size) {
   position: relative;
   width: $circle-size;
@@ -44,12 +46,25 @@ body {
 body {
   display: flex;
   font-family:sans-serif;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  background:#999;
+ color:#555;
+ 
+  > div {
+    margin: 1em;
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:#fff;
+    padding:1rem;
+    border-radius:.5rem;
+    box-shadow:0 0 5px rgba(0,0,0,0.5);
+    
+  }
 }
 color_wheel {
   @include on-circle($item-count: 12, $circle-size: 8rem, $item-size: 2rem);
-  margin:2rem;
 }
 color_wheel swatch {
   cursor: pointer;
@@ -104,11 +119,12 @@ color_wheel swatch {
 }
 
 h2 {
-	align:left;
+	font-weight:normal;
+  margin-bottom: 1em;
 }
 
 color_schemes {
-	margin: 1rem;
+	// margin: 1rem;
 }
 palettes {
 	display:flex;
@@ -128,8 +144,8 @@ palette swatch {
 }
 
 label {
-  font-weight: bold;
   margin-left: .5em;
+  font-size:1.2rem;
 }
 
 
@@ -142,4 +158,14 @@ label {
 
 .dim {
 	opacity:.3;
+}
+
+.callout {
+  animation-name: callout;
+  animation-duration: 1s;
+}
+
+@keyframes callout {
+  from {opacity: .25;}
+  to {opacity: 1;}
 }
